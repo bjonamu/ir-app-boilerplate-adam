@@ -1,0 +1,27 @@
+{
+  "name": "ir-app-boilerplate-adam",
+  "version": "0.0.1",
+  "description": "Boilerplate for ignite-react-app",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bjonamu/ir-app-boilerplate-adam.git"
+  },
+  "keywords": [
+    "boilerplate"
+  ],
+  "author": "Blessing Jonamu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bjonamu/ir-app-boilerplate-adam/issues"
+  },
+  "homepage": "https://github.com/bjonamu/ir-app-boilerplate-adam#readme",
+  "dependencies": {
+    "ramda": "^0.25.0"
+  }
+}
