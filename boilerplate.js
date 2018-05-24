@@ -50,7 +50,6 @@ async function install (context) {
   // generate some templates
   spinner.text = '▸ generating files'
   const templates = [
-    { template: 'index.js.ejs', target: 'index.js' },
     { template: 'README.md', target: 'README.md' },
     { template: 'ir-app.json.ejs', target: 'ir-app.json' }
     // { template: 'storybook/storybook.ejs', target: 'storybook/storybook.js' },
