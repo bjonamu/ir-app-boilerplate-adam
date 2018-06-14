@@ -19,7 +19,7 @@ module.exports = {
       name = `${name}Container`
     }
 
-    const target = `src/Containers/${name}.js`
+    const target = `src/Containers/${name}.jsx`
 
     // verify the container doesn't exist already
     if (filesystem.exists(target) === 'file') {

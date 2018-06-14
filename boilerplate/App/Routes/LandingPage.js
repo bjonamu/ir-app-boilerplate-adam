@@ -2,10 +2,10 @@ import React from 'react'
 import Helmet from 'react-helmet'
 
 import Colors from '../Themes/Colors'
-import Page from '../Components/Page'
+import { FluidPage } from '../Layouts'
 
 export default () => (
-  <Page background={Colors.snow}>
+  <FluidPage background={Colors.snow}>
     <h2 className='app-name'>{'{ignite-react-app}'}</h2>
     <div className='container__item landing-page-container'>
       <div className='content__wrapper'>
@@ -19,5 +19,5 @@ export default () => (
       </div>
     </div>
     <Helmet title='Home' />
-  </Page>
+  </FluidPage>
 )

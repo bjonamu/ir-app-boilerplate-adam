@@ -4,7 +4,7 @@ module.exports = {
   run: async (toolbox) => {
     const { parameters, print, template: { generate }, strings, filesystem } = toolbox
     const { isBlank, pascalCase } = strings
-    const { first: paramName } = parameters
+    const { first: paramName, options: { c } } = parameters
 
     // validation
     if (isBlank(paramName)) {
@@ -32,7 +32,7 @@ module.exports = {
 
     await generate({
       template,
-      target: `${folder}/index.js`,
+      target: `${folder}/${name}.jsx`,
       props: { name }
     })
   }

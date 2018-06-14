@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Helmet from 'react-helmet'
 
 // Custom
-import AppConfig from '../Config/AppConfig'
 import Routes from './Routes'
-import Wrapper from '../Components/Wrapper'
 import NoMatch from '../Routes/NoMatch'
+import AppConfig from '../Config/AppConfig'
 
 const AppNavigation = () => (
   <Router>
-    <Wrapper>
+    <Fragment>
       <Helmet
         defaultTitle={AppConfig.appName}
         titleTemplate={`${AppConfig.appName}  | %s`}
@@ -19,7 +18,7 @@ const AppNavigation = () => (
         {Routes.map((route, i) => <Route key={i} {...route} />)}
         <Route component={NoMatch} />
       </Switch>
-    </Wrapper>
+    </Fragment>
   </Router>
 )
 

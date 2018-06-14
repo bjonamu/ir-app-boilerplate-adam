@@ -15,14 +15,11 @@ async function install (context) {
     template,
     meta: { version }
   } = context
-  const { colors } = print
-  const { red, yellow, bold, gray, blue } = colors
+  const { blue } = print.colors
 
-  const perfStart = (new Date()).getTime()
-
-  const appName = parameters.third
+  const appName = parameters.second
   const spinner = print
-    .spin(`using the ${red('Ignite React App')} boilerplate v1 (code name 'Adam')`)
+    .spin(`using the ${blue('Ignite React App')} boilerplate v1 (code name 'Adam')`)
     .succeed()
 
   // remove files
@@ -57,8 +54,7 @@ async function install (context) {
   ]
   const templateProps = {
     name: appName,
-    irAppVersion: version(),
-    createReactAppVersion: 0
+    irAppVersion: version()
   }
   await ignite.copyBatch(context, templates, templateProps, {
     quiet: true,
@@ -108,6 +104,7 @@ async function install (context) {
     // write this out
     filesystem.write('package.json', newPackage, { jsonIndent: 2 })
   }
+
   await mergePackageJsons()
 
   spinner.stop()
@@ -121,7 +118,7 @@ async function install (context) {
   try {
     // boilerplate adds itself to get plugin.js/generators etc
     // Could be directory, npm@version, or just npm name.  Default to passed in values
-    const boilerplate = parameters.options.b || parameters.options.boilerplate || 'ir-app-boilerplate-adam'
+    const boilerplate = parameters.options.b || parameters.options.boilerplate || parameters.first // 'ir-app-boilerplate-adam'
 
     await system.spawn(`ir-app add ${boilerplate} ${debugFlag}`, { stdio: 'inherit' })
   } catch (e) {
@@ -142,19 +139,20 @@ async function install (context) {
     spinner.succeed(`configured git`)
   }
 
-  const perfDuration = parseInt(((new Date()).getTime() - perfStart) / 10) / 100
-  spinner.succeed(`ignited ${yellow(appName)} in ${perfDuration}s`)
+  // spinner.succeed(`ignited ${yellow(appName)} in ${perfDuration}s`)
 
-  const successMessage = `
-    ${red('ignite-react-app CLI')} ignited ${yellow(appName)} in ${gray(`${perfDuration}s`)}
-    To get started:
-      cd ${appName}
-      yarn start
-      ir-app --help
-    ${bold('Now get cooking! 🍽')}
-  `
+  // const successMessage = `
+  //   ${red('ignite-react-app CLI')} ignited ${yellow(appName)} in ${gray(`${perfDuration}s`)}
 
-  print.info(successMessage)
+  //   To get started:
+
+  //     cd ${appName}
+  //     yarn start
+  //     ir-app --help
+
+  //   ${bold('Now get cooking! 🍽')}
+  // `
+  print.info('Now get cooking! 🍽')
 }
 
 module.exports = {

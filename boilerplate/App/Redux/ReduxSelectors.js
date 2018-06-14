@@ -5,7 +5,6 @@ import { createSelector } from 'reselect'
 /* ------------- Login ------------- */
 const getUser = state => state.login.data
 
-
 // Checks if the store has been rehydrated
 const hasReydrated = state => state._persist.rehydrated
 

@@ -2,10 +2,10 @@ import React from 'react'
 import Helmet from 'react-helmet'
 
 import Colors from '../Themes/Colors'
-import Page from '../Components/Page'
+import { FluidPage } from '../Layouts'
 
 export default () => (
-  <Page background={Colors.snow}>
+  <FluidPage background={Colors.snow}>
     <Helmet title='Next Page' />
-  </Page>
+  </FluidPage>
 )
