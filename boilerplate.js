@@ -34,22 +34,17 @@ async function install (context) {
     overwrite: true,
     matching: '!*.ejs'
   })
-  // filesystem.copy(`${__dirname}/boilerplate/Tests`, `${process.cwd()}/Tests`, {
-  //   overwrite: true,
-  //   matching: '!*.ejs'
-  // })
-  // filesystem.copy(`${__dirname}/boilerplate/storybook`, `${process.cwd()}/storybook`, {
-  //   overwrite: true,
-  //   matching: '!*.ejs'
-  // })
+  filesystem.copy(`${__dirname}/boilerplate/.storybook`, `${process.cwd()}/.storybook`, {
+    overwrite: true,
+    matching: '!*.ejs'
+  })
   spinner.stop()
 
   // generate some templates
   spinner.text = '▸ generating files'
   const templates = [
     { template: 'README.md', target: 'README.md' },
-    { template: 'ir-app.json.ejs', target: 'ir-app.json' }
-    // { template: 'storybook/storybook.ejs', target: 'storybook/storybook.js' },
+    { template: 'ir-app.json.ejs', target: 'ir-app.json' },
     // { template: '.env.example', target: '.env.example' }
   ]
   const templateProps = {

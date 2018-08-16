@@ -7,7 +7,7 @@ module.exports = {
   name: 'gen',
   alias: ['g'],
   run: async (toolbox) => {
-    const { parameters, print, system, strings } = toolbox
+    const { parameters, print, strings } = toolbox
     const { array: paramsArray } = parameters
     const { isBlank } = strings
 

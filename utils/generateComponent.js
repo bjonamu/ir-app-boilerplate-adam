@@ -1,5 +1,5 @@
 const generateComponent = async (toolbox, componentName) => {
-  const { parameters, print, template: { generate }, strings, filesystem } = toolbox
+  const { parameters, print, template: { generate }, strings, filesystem, ignite } = toolbox
   const { isBlank, pascalCase } = strings
   const { first: paramName, options: { c } } = parameters
 
@@ -27,11 +27,22 @@ const generateComponent = async (toolbox, componentName) => {
     template = 'controlled.ejs'
   }
 
-  await generate({
+  const props = { name }
+  const jobs = [{
     template,
     target: `${folder}/${name}.jsx`,
-    props: { name }
-  })
+  }, {
+    template: 'story.ejs',
+    target: `${folder}/${name}.story.jsx`
+  }]
+
+  // await generate({
+  //   template,
+  //   target: `${folder}/${name}.jsx`,
+  //   props: { name }
+  // })
+
+  await ignite.copyBatch(toolbox, jobs, props)
 
   print.info(`Generated component ${print.colors.yellow(name)}`)
 }
