@@ -34,22 +34,17 @@ async function install (context) {
     overwrite: true,
     matching: '!*.ejs'
   })
-  // filesystem.copy(`${__dirname}/boilerplate/Tests`, `${process.cwd()}/Tests`, {
-  //   overwrite: true,
-  //   matching: '!*.ejs'
-  // })
-  // filesystem.copy(`${__dirname}/boilerplate/storybook`, `${process.cwd()}/storybook`, {
-  //   overwrite: true,
-  //   matching: '!*.ejs'
-  // })
+  filesystem.copy(`${__dirname}/boilerplate/.storybook`, `${process.cwd()}/.storybook`, {
+    overwrite: true,
+    matching: '!*.ejs'
+  })
   spinner.stop()
 
   // generate some templates
   spinner.text = '▸ generating files'
   const templates = [
     { template: 'README.md', target: 'README.md' },
-    { template: 'ir-app.json.ejs', target: 'ir-app.json' }
-    // { template: 'storybook/storybook.ejs', target: 'storybook/storybook.js' },
+    { template: 'ir-app.json.ejs', target: 'ir-app.json' },
     // { template: '.env.example', target: '.env.example' }
   ]
   const templateProps = {
@@ -107,8 +102,6 @@ async function install (context) {
 
   await mergePackageJsons()
 
-  spinner.stop()
-
   // pass long the debug flag if we're running in that mode
   const debugFlag = parameters.options.debug ? '--debug' : ''
 
@@ -134,24 +127,12 @@ async function install (context) {
 
     // TODO: Make husky hooks optional
     const huskyCmd = '' // `&& node node_modules/husky/bin/install .`
-    system.run(`git init . && git add . && git commit -m "Initial commit." ${huskyCmd}`)
+    const msg = '"Initial commit."'
+    system.run(`git init . && git add . && git commit -m ${msg} ${huskyCmd}`)
 
     spinner.succeed(`configured git`)
   }
 
-  // spinner.succeed(`ignited ${yellow(appName)} in ${perfDuration}s`)
-
-  // const successMessage = `
-  //   ${red('ignite-react-app CLI')} ignited ${yellow(appName)} in ${gray(`${perfDuration}s`)}
-
-  //   To get started:
-
-  //     cd ${appName}
-  //     yarn start
-  //     ir-app --help
-
-  //   ${bold('Now get cooking! 🍽')}
-  // `
   print.info('Now get cooking! 🍽')
 }
 

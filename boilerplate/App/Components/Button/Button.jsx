@@ -1,20 +1,23 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-const Button = (props) => {
-  return (
-    <div>
-      <p>Button Component</p>
-    </div>
-  )
-}
+const Button = styled.button`
+  /* Adapt the colours based on primary prop */
+  background: #EC1D97;
+  color: #FFF;
+  font-size: 16px;
+  padding: 0.25em 1em;
+  margin: 0.5em 0;
+  border: none;
+  border-radius: 4px;
+  width: 200px;
+  height: 40px;
+  cursor: pointer;
+  outline: none;
+  font-family: sans-serif;
 
-Button.defaultProps = {
-  name: 'Name'
-}
-
-Button.propTypes = {
-  name: PropTypes.string.isRequired
-}
+  &:disabled {
+    background: #DDDDDD;
+  }
+`
 
 export default Button
