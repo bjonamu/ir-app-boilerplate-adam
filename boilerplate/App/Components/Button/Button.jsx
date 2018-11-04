@@ -1,9 +1,8 @@
 import styled from 'styled-components'
 
 const Button = styled.button`
-  /* Adapt the colours based on primary prop */
-  background: #EC1D97;
-  color: #FFF;
+  background: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.snow};
   font-size: 16px;
   padding: 0.25em 1em;
   margin: 0.5em 0;
@@ -16,7 +15,9 @@ const Button = styled.button`
   font-family: sans-serif;
 
   &:disabled {
-    background: #DDDDDD;
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
   }
 `
 

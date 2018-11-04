@@ -3,9 +3,9 @@ import Button from './Button'
 import { storiesOf } from '@storybook/react'
 
 storiesOf('Button')
-  .add('Regular like', () => (
+  .add('default', () => (
     <Button>Click</Button>
   ))
-  .add('Disabled', () => (
+  .add('disabled', () => (
     <Button disabled>Disabled</Button>
   ))

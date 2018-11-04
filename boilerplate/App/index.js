@@ -1,5 +1,3 @@
-import './index.css'
-
 import React from 'react'
 import { render } from 'react-snapshot'
 import registerServiceWorker from './registerServiceWorker'
