@@ -2,7 +2,7 @@ import React from 'react'
 import <%= props.name %> from './<%= props.name %>'
 import { storiesOf } from '@storybook/react'
 
-storiesOf('<%= props.name %>')
+storiesOf('<%= props.name %>', module)
   .add('default', () => (
     <<%= props.name %> />
   ))
