@@ -1,8 +1,8 @@
 import React from 'react'
 import { render } from 'react-snapshot'
-import registerServiceWorker from './registerServiceWorker'
 import DevConfig from './Config/DevConfig'
 import App from './App'
+import * as serviceWorker from './serviceWorker'
 
 /**
  * Why did you update is a function that monkey patches React and
@@ -28,4 +28,7 @@ if (module.hot) {
   })
 }
 
-registerServiceWorker()
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+serviceWorker.unregister()
