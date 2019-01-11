@@ -1,6 +1,6 @@
 {
   "name": "ir-app-boilerplate-adam",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Boilerplate for ignite-react-app",
   "directories": {
     "lib": "lib"
