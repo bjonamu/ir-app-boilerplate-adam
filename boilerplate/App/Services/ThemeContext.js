@@ -1,27 +1,25 @@
 import React from 'react'
+import { withState, compose, withHandlers } from 'recompose'
 
-export const Context = React.createContext()
+const Context = React.createContext()
 
-class ThemeContext extends React.Component {
-  state = { 
-    theme: 'light'
-  }
+const localStorage = window.localStorage
 
-  toggleTheme = () => {
-    this.setState(({ theme }) => ({
-      theme: theme === 'dark' ? 'light' : 'dark'
-    }))
-  }
+const ThemeContext = ({ children, theme, toggleTheme }) => (
+  <Context.Provider value={{ theme, toggleTheme }}>
+    {children}
+  </Context.Provider>
+)
 
-  render() {
-    return (
-      <Context.Provider value={{ theme: this.state.theme, toggleTheme: this.toggleTheme }}>
-        {this.props.children}
-      </Context.Provider>
-    );
-  }
-}
+export default compose(
+  withState('theme', 'setTheme', localStorage.getItem('theme') || 'light'),
+  withHandlers({
+    toggleTheme: ({ theme, setTheme }) => () => {
+      const nextValue = theme === 'dark' ? 'light' : 'dark'
+      setTheme(nextValue)
+      localStorage.setItem('theme', nextValue)
+    }
+  })
+)(ThemeContext)
 
 export const ThemeConsumer = Context.Consumer
-
-export default ThemeContext
