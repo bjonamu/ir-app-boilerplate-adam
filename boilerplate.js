@@ -18,18 +18,17 @@ async function install (context) {
   const { blue } = print.colors
 
   const appName = parameters.second
-  const spinner = print
+  print
     .spin(`using the ${blue('Ignite React App')} boilerplate v1 (code name 'Adam')`)
     .succeed()
 
   // remove files
-  filesystem.remove('App.js')
-  filesystem.remove('App.css')
-  filesystem.remove('logo.svg')
+  filesystem.remove(`${process.cwd()}/src/App.css`)
+  filesystem.remove(`${process.cwd()}/src/index.css`)
+  filesystem.remove(`${process.cwd()}/src/logo.svg`)
 
   // copy our App, Tests & storybook directories
-  spinner.text = '▸ copying files'
-  spinner.start()
+  const genSpinner = print.spin('generating files')
   filesystem.copy(`${__dirname}/boilerplate/App`, `${process.cwd()}/src`, {
     overwrite: true,
     matching: '!*.ejs'
@@ -38,10 +37,8 @@ async function install (context) {
     overwrite: true,
     matching: '!*.ejs'
   })
-  spinner.stop()
-
+  
   // generate some templates
-  spinner.text = '▸ generating files'
   const templates = [
     { template: 'README.md', target: 'README.md' },
     { template: 'ir-app.json.ejs', target: 'ir-app.json' },
@@ -55,6 +52,7 @@ async function install (context) {
     quiet: true,
     directory: `${ignite.ignitePluginPath()}/boilerplate`
   })
+  genSpinner.succeed('generated files')
 
   /**
    * Append to files
@@ -118,6 +116,11 @@ async function install (context) {
     ignite.log(e)
     throw e
   }
+
+  // install dependencies
+  const depSpinner = print.spin('installing dependencies')
+  system.run('npm i')
+  depSpinner.succeed('installed dependencies')
 
   // git configuration
   const gitExists = await filesystem.exists('./.git')
